@@ -27,18 +27,17 @@ jobs:
           924612597405.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Build Docker image
-        run: docker build -t razz/docker .
+        run: docker build -t docker/project .
 
       - name: Tag Docker image
         run: 
-           docker tag razz/docker:latest \
-           924612597405.dkr.ecr.us-east-1.amazonaws.com/razz/docker:latest
+           docker tag docker/project:latest \
+           924612597405.dkr.ecr.us-east-1.amazonaws.com/docker/project:latest
           
 
       - name: Push Docker image
         run: |
-          docker push \
-          924612597405.dkr.ecr.us-east-1.amazonaws.com/razz/docker:latest
+          docker push 924612597405.dkr.ecr.us-east-1.amazonaws.com/docker/project:latest
           
 
           # Deploy to ECS
