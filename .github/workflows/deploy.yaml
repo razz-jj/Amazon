@@ -24,20 +24,22 @@ jobs:
         run: |
           aws ecr get-login-password --region us-east-1 | \
           docker login --username AWS --password-stdin \
-          349430015931.dkr.ecr.us-east-1.amazonaws.com
+          924612597405.dkr.ecr.us-east-1.amazonaws.com
 
       - name: Build Docker image
-        run: docker build -t myapp .
+        run: docker build -t razz/docker .
 
       - name: Tag Docker image
-        run: |
-          docker tag myapp:latest \
-          349430015931.dkr.ecr.us-east-1.amazonaws.com/docker/project:latest
+        run: 
+           docker tag razz/docker:latest \
+           924612597405.dkr.ecr.us-east-1.amazonaws.com/razz/docker:latest
+          
 
       - name: Push Docker image
         run: |
           docker push \
-          349430015931.dkr.ecr.us-east-1.amazonaws.com/docker/project:latest
+          924612597405.dkr.ecr.us-east-1.amazonaws.com/razz/docker:latest
+          
 
           # Deploy to ECS
       - name: Deploy to ECS
